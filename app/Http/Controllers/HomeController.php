@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\Rangking;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +16,16 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $assets = ['chart', 'animation'];
-        return view('dashboards.dashboard', compact('assets'));
+        $alternatifs = Alternatif::select('*')->get();
+        $kriterias = Kriteria::select('*')->get();
+        $jmlKriteria = Kriteria::select('*')->count();
+        $jmlAlter = Alternatif::select('*')->count();
+        $jmlUser = User::select('*')->count();
+        $jmlAdmin = User::select('*')->where('user_type', 'admin')->count();
+        $rangking = Rangking::select('ranking.id_alternatif', 'alternatif.nama','ranking.nilai', 'alternatif.id')
+        ->join('alternatif', 'alternatif.id','=','ranking.id_alternatif')->orderBy('nilai','DESC')->get();
+
+        return view('dashboards.dashboard', compact('assets','kriterias','alternatifs','jmlKriteria','jmlAlter','jmlUser','jmlAdmin','rangking'));
     }
 
     /*

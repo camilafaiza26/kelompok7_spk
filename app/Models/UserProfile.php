@@ -17,6 +17,7 @@ class UserProfile extends Model
         'phone_number',
         'alt_phone_number',
         'country',
+        'country',
         'state',
         'city',
         'pin_code',

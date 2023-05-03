@@ -39,10 +39,7 @@ if (document.querySelectorAll('#d-activity').length) {
     const options = {
       series: [{
         name: 'Successful deals',
-        data: [30, 50, 35, 60, 40, 60, 60, 30, 50, 35,]
-      }, {
-        name: 'Failed deals',
-        data: [40, 50, 55, 50, 30, 80, 30, 40, 50, 55]
+        data: [49.998, 33.767, 16.247,]
       }],
       chart: {
         type: 'bar',
@@ -52,7 +49,7 @@ if (document.querySelectorAll('#d-activity').length) {
             show:false
           }
       },
-      colors: ["#3a57e8", "#4bc7d2"],
+      colors: ["#3a57e8"],
       plotOptions: {
         bar: {
           horizontal: false,
@@ -73,7 +70,7 @@ if (document.querySelectorAll('#d-activity').length) {
         colors: ['transparent']
       },
       xaxis: {
-        categories: ['S', 'M', 'T', 'W', 'T', 'F', 'S', 'M', 'T', 'W'],
+        categories: ['Pertamax', 'Pertamax Turbo', 'Pertalite'],
         labels: {
           minHeight:20,
           maxHeight:20,
@@ -100,7 +97,7 @@ if (document.querySelectorAll('#d-activity').length) {
       tooltip: {
         y: {
           formatter: function (val) {
-            return "$ " + val + " thousands"
+            return "Nilai Vektor " + val + "%"
           }
         }
       }
@@ -116,12 +113,17 @@ if (document.querySelectorAll('#d-activity').length) {
 if (document.querySelectorAll('#d-main').length) {
   const options = {
       series: [{
-          name: 'total',
-          data: [94, 80, 94, 80, 94, 80, 94]
+          name: 'pertamax',
+          data: [49]
       }, {
-          name: 'pipline',
-          data: [72, 60, 84, 60, 74, 60, 78]
-      }],
+          name: 'pertamax turbo',
+          data: [33]
+      },
+      {
+        name: 'pertalite',
+        data: [16]
+    }],
+      
       chart: {
           fontFamily: '"Inter", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
           height: 245,
@@ -166,9 +168,9 @@ if (document.querySelectorAll('#d-main').length) {
               },
           },
           lines: {
-              show: false  //or just here to disable only x axis grids
+              show: true  //or just here to disable only x axis grids
           },
-          categories: ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug"]
+          categories: ["Mei"]
       },
       grid: {
           show: false,
@@ -184,7 +186,7 @@ if (document.querySelectorAll('#d-main').length) {
               opacityFrom: .4,
               opacityTo: .1,
               stops: [0, 50, 80],
-              colors: ["#3a57e8", "#4bc7d2"]
+              colors: ["#3a57e8", "#4bc7d2", "#00FF00"]
           }
       },
       tooltip: {

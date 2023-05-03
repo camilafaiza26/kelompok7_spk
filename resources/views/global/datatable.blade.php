@@ -12,6 +12,7 @@
                </div>
                 <div class="card-action">
                     {!! $headerAction ?? '' !!}
+                    
                 </div>
             </div>
             <div class="card-body px-0">
@@ -19,8 +20,11 @@
                     {{ $dataTable->table(['class' => 'table text-center table-striped w-100'],true) }}
                </div>
             </div>
+            
          </div>
       </div>
    </div>
 </div>
+
+
 </x-app-layout>

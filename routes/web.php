@@ -1,11 +1,17 @@
 <?php
 
 // Controllers
+
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\Pv_AlternatifController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
+use App\Http\Controllers\SpkController;
 use App\Http\Controllers\SurveyController;
+
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
 // Packages
@@ -42,6 +48,20 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Users Module
     Route::resource('users', UserController::class);
+
+    //Kriteria Module
+    Route::resource('kriteria', KriteriaController::class);
+
+    ///Alternative Module
+    Route::resource('alternatif', AlternatifController::class);
+    
+    Route::resource('perbandingan-kriteria', SpkController::class);
+
+    Route::get('perbandingan-alternatif/{id}', ['as' => 'perbandingan-alternatif', 'uses' => 'App\Http\Controllers\PerbandinganAlternatif@index']);
+    Route::post('perbandingan-alternatif/store', ['as' => 'perbandingan-alternatif.store', 'uses' => 'App\Http\Controllers\PerbandinganAlternatif@store']);
+    Route::get('hasil-akhir', ['as' => 'rangking.store', 'uses' => 'App\Http\Controllers\RangkingController@store']);
+
+
 });
 
 //App Details Page => 'Dashboard'], function() {
@@ -56,7 +76,12 @@ Route::group(['prefix' => 'menu-style'], function() {
 
 Route::group(['prefix' => 'survey'], function() {
     Route::get('add', [SurveyController::class, 'create'])->name('survey.add');
+    Route::get('daftar', [SurveyController::class, 'index'])->name('survey.index');
+    
+    
 });
+
+
 
 
 //App Details Page => 'special-pages'], function() {
